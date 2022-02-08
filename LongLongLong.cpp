@@ -11,17 +11,20 @@ LongLongLong::LongLongLong() {
     this->value.clear();
 }
 
-void LongLongLong::setDecimal(int c) {
-    int dec = c;
-    while (dec != 0){
-        this->value.push_back((dec % 2 == 0) ? false : true);
-        dec /= 2;
-    }
-}
-void LongLongLong::setBi(string str) {
-    reverse(str.begin(), str.end());
-    for (int i=0;i<str.size();i++) {
-        this->value.push_back((str.substr(i, 1) == "0") ? false : true);
+LongLongLong::LongLongLong(string val, int base) {
+    LongLongLong result;
+    if (base == 2) {
+        string str = val;
+        reverse(str.begin(), str.end());
+        for (int i=0;i<str.size();i++) {
+            this->value.push_back((str.substr(i, 1) == "0") ? false : true);
+        }
+    } else if (base == 10) {
+        long long dec = atoll(val.c_str());
+        while (dec != 0){
+            this->value.push_back((dec % 2 == 0) ? false : true);
+            dec /= 2;
+        }
     }
 }
 
@@ -134,12 +137,10 @@ string LongLongLong::toDecString() {
     reverse(decimal.begin(),decimal.end());
     return decimal;
 }
-LongLongLong LongLongLong::pow(int times) {
+LongLongLong LongLongLong::pow(string times) {
     LongLongLong current = *this;
-    LongLongLong result;
-    result.setBi("1");
-    LongLongLong powa;
-    powa.setDecimal(times);
+    LongLongLong result = LongLongLong("1",2);
+    LongLongLong powa = LongLongLong(times,10);
     vector<bool> pows = powa.value;
     for (int i = 0;i < pows.size();i++) {
         if (pows[i]) {

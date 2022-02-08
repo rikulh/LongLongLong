@@ -6,16 +6,15 @@
 using namespace std;
 
 int main (int argc,char** argv) {
-    int an;
-    int b;
+    string x;
+    string n;
     cout << "Number(decimal):";
-    cin >> an;
+    cin >> x;
     cout << "Pow(decimal):";
-    cin >> b;
-    LongLongLong a;
-    a.setDecimal(an);
+    cin >> n;
+    LongLongLong xn = LongLongLong(x,10);
     clock_t start = clock();
-    cout << a.pow(b).toDecString() << endl;
+    cout << xn.pow(n).toDecString() << endl;
     clock_t end = clock();
     cout << (double)((end - start) / 10000) / 100 << "sec." << endl;
 } 

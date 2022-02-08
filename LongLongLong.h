@@ -9,13 +9,12 @@ using namespace std;
 class LongLongLong {
 public:
     LongLongLong();
+    LongLongLong(string,int);
     vector<bool> value;
-    void setDecimal(int);
-    void setBi(string);
     LongLongLong ply(LongLongLong);
     LongLongLong plus(LongLongLong);
     LongLongLong minus(LongLongLong);
-    LongLongLong pow(int);
+    LongLongLong pow(string);
     LongLongLong twoTimes(int) const;
     string toBiString();
     string toDecString();
